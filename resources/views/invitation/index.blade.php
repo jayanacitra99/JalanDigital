@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Undangan Unduh Mantu Thea & Alan - 30 Mei 2026</title>
     
     <link rel="preload" as="image" href="{{ asset('img/after-cover.webp') }}">
@@ -190,13 +191,13 @@
             </svg>
 
             <div class="relative z-20 p-8 h-full w-full max-w-md flex flex-col items-center justify-center mx-auto text-w-text-light">
-                <p class="font-serif italic text-xl tracking-wide text-w-gold font-medium mb-10 fade-in-load">Unduh Mantu</p>
+                <p class="font-serif italic text-xl tracking-wide text-w-gold font-medium mb-10 fade-in-load">{{ $event->title }}</p>
                 <div class="flex flex-col items-center mb-6 mt-2 fade-in-load delay-1 drop-shadow-md transform -rotate-2">
-                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7]">T</h1>
+                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7]">{{ substr($event->bride_nickname, 0, 1) }}</h1>
                     <span class="text-4xl text-white font-script leading-[0.7] my-3">&</span>
-                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7] ml-4">A</h1>
+                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7] ml-4">{{ substr($event->groom_nickname, 0, 1) }}</h1>
                 </div>
-                <p class="font-sans font-semibold text-sm mb-8 tracking-widest fade-in-load delay-2">30 MEI 2026</p>
+                <p class="font-sans font-semibold text-sm mb-8 tracking-widest fade-in-load delay-2">{{ strtoupper(\Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y')) }}</p>
 
                 <div class="stamp-card transform rotate-2 w-[85%] max-w-[260px] fade-in-load delay-3 mb-10 text-w-text-dark">
                     <div class="stamp-inner flex flex-col items-center justify-center min-h-[100px] bg-white">
@@ -256,12 +257,15 @@
                             <div class="w-36 h-48 mirror-frame mb-5 img-placeholder shadow-lg">
                                 <img src="{{ asset('img/pic-thea.webp') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
                             </div>
-                            <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,6vw,1.75rem)]">Naridha Thea Wardhani, S.Tr.Li</h3>
-                            <p class="font-sans text-xs text-gray-600 mb-4 px-1 leading-relaxed">Putri Bungsu dari <br> Bapak Eko Agus Winardi, M.Pd & Ibu Lestari, A.Md</p>
-                            <a href="https://instagram.com/naridhathea" target="_blank" class="flex items-center gap-1.5 text-[11px] font-bold text-w-gold hover:text-w-green transition bg-white px-4 py-1.5 border border-w-gold/30 rounded-full shadow-sm">
+
+                            <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,6vw,1.75rem)]">{{ $event->bride_fullname }}</h3>
+                            <p class="font-sans text-xs text-gray-600 mb-4 px-1 leading-relaxed">{!! nl2br(e($event->bride_parents)) !!}</p>
+                            @if($event->bride_ig)
+                            <a href="https://instagram.com/{{ $event->bride_ig }}" target="_blank"  class="flex items-center gap-1.5 text-[11px] font-bold text-w-gold hover:text-w-green transition bg-white px-4 py-1.5 border border-w-gold/30 rounded-full shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                @naridhathea
+                                {{ '@' . $event->bride_ig }}
                             </a>
+                            @endif
                         </div>
 
                         <div class="font-script text-5xl text-w-gold animate-on-scroll delay-300 opacity-70">&</div>
@@ -270,12 +274,15 @@
                             <div class="w-36 h-48 mirror-frame mb-5 img-placeholder shadow-lg">
                                  <img src="{{ asset('img/pic-alan.webp') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
                             </div>
-                            <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,5.5vw,1.6rem)]">Arkhab Maulana U., S.Kom</h3>
-                            <p class="font-sans text-xs text-gray-600 mb-4 px-1 leading-relaxed">Putra Sulung dari <br> Bapak Tri Tjahyo Prasetiyo, S.T & Ibu Ririn Sulintari, A.Md.Farm, S.T</p>
-                            <a href="https://instagram.com/arkhabmaulana" target="_blank" class="flex items-center gap-1.5 text-[11px] font-bold text-w-gold hover:text-w-green transition bg-white px-4 py-1.5 border border-w-gold/30 rounded-full shadow-sm">
+
+                            <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,5.5vw,1.6rem)]">{{ $event->groom_fullname }}</h3>
+                            <p class="font-sans text-xs text-gray-600 mb-4 px-1 leading-relaxed">{!! nl2br(e($event->groom_parents)) !!}</p>
+                            @if($event->groom_ig)
+                            <a href="https://instagram.com/{{ $event->groom_ig }}" target="_blank" class="flex items-center gap-1.5 text-[11px] font-bold text-w-gold hover:text-w-green transition bg-white px-4 py-1.5 border border-w-gold/30 rounded-full shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                @arkhabmaulana
+                                {{ '@' . $event->groom_ig }}
                             </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -283,7 +290,7 @@
 
             <section class="min-h-[100dvh] w-full snap-start flex flex-col items-center justify-center p-6 bg-clover-light text-center">
                 <div class="max-w-md mx-auto w-full">
-                    <h2 class="font-hand text-5xl md:text-6xl mb-10 text-w-green animate-on-scroll">Unduh Mantu</h2>
+                    <h2 class="font-hand text-5xl md:text-6xl mb-10 text-w-green animate-on-scroll">{{ $event->title }}</h2>
                     
                     <div class="flex justify-center gap-3 mb-10">
                         <div class="flex flex-col items-center p-3 w-16 border border-w-green/30 bg-white rounded-lg animate-on-scroll delay-100 shadow-sm">
@@ -306,20 +313,22 @@
 
                     <div class="mb-8 animate-on-scroll delay-100 w-full px-2">
                         <div class="bg-white p-6 border border-w-green shadow-sm relative">
-                            <h3 class="font-sans font-bold text-sm tracking-widest mb-4 border-b border-w-green/30 pb-2 inline-block text-w-green">SABTU, 30 MEI 2026</h3>
+                            <h3 class="font-sans font-bold text-sm tracking-widest mb-4 border-b border-w-green/30 pb-2 inline-block text-w-green">
+                                {{ strtoupper(\Carbon\Carbon::parse($event->event_date)->translatedFormat('l, d F Y')) }}
+                            </h3>
                             <div class="mt-4">
-                                <p class="font-hand text-2xl font-bold text-w-gold">Resepsi</p>
-                                <p class="font-sans text-[10px] mt-1 text-gray-600 font-bold tracking-wider">14.00 - 17.00 WIB</p>
+                                <p class="font-hand text-2xl font-bold text-w-gold">{{ $event->title }}</p>
+                                <p class="font-sans text-[10px] mt-1 text-gray-600 font-bold tracking-wider">{{ $event->event_time_text }}</p>
                             </div>
                             <div class="mt-6 pt-4 border-t border-w-green/10">
-                                <p class="font-hand text-xl text-w-green font-bold">Resto Lumbung Dahar</p>
-                                <p class="font-sans text-[9px] text-gray-500 mt-2 leading-relaxed">📍 Jl. Diponegoro, Karangploso, Girimoyo, Kec. Karang Ploso, Kabupaten Malang</p>
+                                <p class="font-hand text-xl text-w-green font-bold">{{ $event->location_name }}</p>
+                                <p class="font-sans text-[9px] text-gray-500 mt-2 leading-relaxed">📍 {{ $event->location_address }}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="animate-on-scroll delay-400">
-                        <a href="https://maps.google.com" target="_blank" class="inline-block bg-w-green text-white font-sans px-8 py-3 rounded-full text-[10px] tracking-widest hover:bg-opacity-90 transition shadow-md">
+                        <a href="{{ $event->maps_link }}" target="_blank" class="inline-block bg-w-green text-white font-sans px-8 py-3 rounded-full text-[10px] tracking-widest hover:bg-opacity-90 transition shadow-md">
                             VIEW MAPS
                         </a>
                     </div>
@@ -385,10 +394,13 @@
                     <p class="font-sans text-[10px] mb-8 text-gray-600 mx-auto animate-on-scroll delay-100 leading-relaxed">Mohon konfirmasi kehadiran dan tuliskan doa serta restu untuk kami.</p>
                     
                     <div class="bg-[#EBE7DF] p-6 rounded-3xl shadow-sm animate-on-scroll delay-200 text-left relative overflow-hidden">
-                        <form action="#" method="POST" class="space-y-4 relative z-10">
+                        <form id="rsvp-form" action="{{ route('invitation.rsvp', $event->slug) }}" method="POST" class="space-y-4 relative z-10">
+                            @csrf
+                            <div id="rsvp-alert" class="hidden bg-green-100 text-green-700 p-3 rounded-xl text-[10px] mb-3"></div>
+                            
                             <div>
                                 <label class="block font-sans text-[10px] font-bold mb-1.5 ml-2">Nama</label>
-                                <input type="text" name="nama" placeholder="Nama Anda" required class="w-full px-4 py-3 rounded-full border border-w-green/30 font-sans text-[11px] focus:outline-none focus:border-w-green bg-white text-w-text-dark">
+                                <input type="text" id="rsvp-name-input" name="nama" placeholder="Nama Anda" required class="w-full px-4 py-3 rounded-full border border-w-green/30 font-sans text-[11px] focus:outline-none focus:border-w-green bg-white text-w-text-dark">
                             </div>
                             <div>
                                 <label class="block font-sans text-[10px] font-bold mb-1.5 ml-2">Konfirmasi Kehadiran</label>
@@ -403,36 +415,30 @@
                             </div>
                             
                             <div class="flex justify-end pt-2">
-                                <button type="submit" class="border border-w-green bg-transparent font-sans px-6 py-2 rounded-full text-[10px] font-bold tracking-widest hover:bg-w-green hover:text-white transition flex items-center gap-2">
-                                    Kirim 
+                                <button type="submit" id="btn-submit-rsvp" class="border border-w-green bg-transparent font-sans px-6 py-2 rounded-full text-[10px] font-bold tracking-widest hover:bg-w-green hover:text-white transition flex items-center gap-2">
+                                    <span>Kirim</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                                 </button>
                             </div>
                         </form>
                     </div>
 
-                    <div class="mt-8 bg-white/60 p-4 rounded-2xl max-h-64 overflow-y-auto no-scrollbar space-y-3 animate-on-scroll delay-300 shadow-sm border border-w-green/10">
-                        <div class="bg-white p-3 rounded-xl shadow-sm text-left border border-w-green/10">
+                    <div id="rsvp-list-container" class="mt-8 bg-white/60 p-4 rounded-2xl max-h-[50vh] overflow-y-auto no-scrollbar space-y-3 animate-on-scroll delay-300 shadow-sm border border-w-green/10">
+                        @forelse($event->rsvps as $rsvp)
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-left border border-w-green/10 rsvp-item">
                             <div class="flex justify-between items-center mb-1.5">
-                                <p class="font-sans font-bold text-[11px] text-w-text-dark">Bapak/Ibu Budi Santoso</p>
-                                <span class="bg-green-100 text-green-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Hadir</span>
+                                <p class="font-sans font-bold text-[11px] text-w-text-dark">{{ $rsvp->name }}</p>
+                                @if($rsvp->attendance == 'hadir')
+                                    <span class="bg-green-100 text-green-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Hadir</span>
+                                @else
+                                    <span class="bg-red-100 text-red-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Tidak Hadir</span>
+                                @endif
                             </div>
-                            <p class="font-sans text-[10px] text-gray-600 leading-relaxed">Selamat menempuh hidup baru Thea & Alan! Semoga menjadi keluarga sakinah mawaddah warahmah.</p>
+                            <p class="font-sans text-[10px] text-gray-600 leading-relaxed">{{ $rsvp->message }}</p>
                         </div>
-                        <div class="bg-white p-3 rounded-xl shadow-sm text-left border border-w-green/10">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <p class="font-sans font-bold text-[11px] text-w-text-dark">Siti Aminah & Keluarga</p>
-                                <span class="bg-red-100 text-red-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Tidak Hadir</span>
-                            </div>
-                            <p class="font-sans text-[10px] text-gray-600 leading-relaxed">Maaf belum bisa hadir ya, doa terbaik untuk kalian berdua. Bahagia selalu!</p>
-                        </div>
-                         <div class="bg-white p-3 rounded-xl shadow-sm text-left border border-w-green/10">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <p class="font-sans font-bold text-[11px] text-w-text-dark">Rina Lestari</p>
-                                <span class="bg-green-100 text-green-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Hadir</span>
-                            </div>
-                            <p class="font-sans text-[10px] text-gray-600 leading-relaxed">Akhirnya yang ditunggu-tunggu tiba juga, congratsss!! Lancar sampai hari H cantikk ✨</p>
-                        </div>
+                        @empty
+                        <p id="empty-rsvp-msg" class="text-center font-sans text-[10px] text-gray-500">Belum ada ucapan.</p>
+                        @endforelse
                     </div>
                 </div>
             </section>
@@ -448,19 +454,19 @@
 
                     <div id="gift-area" class="hidden mt-8 w-full space-y-4 max-h-[50vh] overflow-y-auto px-1 no-scrollbar pb-6">
                         <div class="border border-w-green/20 p-5 rounded-[2rem] bg-white text-center shadow-sm relative overflow-hidden">
-                            <p class="font-sans font-bold text-[11px] text-w-green tracking-widest mb-3">BCA</p>
+                            <p class="font-sans font-bold text-[11px] text-w-green tracking-widest mb-3">{{ $event->bank_name }}</p>
                             <div class="bg-[#F4F1EA] rounded-xl py-3 px-4 mb-3 flex items-center justify-between">
-                                <p class="font-sans font-bold tracking-wider text-sm text-w-text-dark" id="rek-bca">4390508994</p>
-                                <button onclick="copyRek('4390508994')" class="text-[9px] text-w-green">
+                                <p class="font-sans font-bold tracking-wider text-sm text-w-text-dark" id="rek-bca">{{ $event->bank_account }}</p>
+                                <button onclick="copyRek('{{ $event->bank_account }}')" class="text-[9px] text-w-green">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                                 </button>
                             </div>
-                            <p class="font-sans text-[10px] font-semibold text-w-green">A.N : Arkhab Maulana Uzlahbillah</p>
+                            <p class="font-sans text-[10px] font-semibold text-w-green">A.N : {{ $event->bank_account_name }}</p>
                         </div>
 
                         <div class="border border-w-green/20 p-5 rounded-[2rem] bg-white text-center shadow-sm">
                             <p class="font-sans font-bold text-[11px] text-w-green tracking-widest mb-3">KIRIM HADIAH</p>
-                            <p id="alamat-kado" class="font-sans text-[10px] text-gray-600 leading-relaxed mb-4 px-2">Jl. Sulfat Agung V/18 RT.6 RW.21, Purwantoro, Kec. Blimbing, Kota Malang, Jawa Timur 65122</p>
+                            <p id="alamat-kado" class="font-sans text-[10px] text-gray-600 leading-relaxed mb-4 px-2">{{ $event->gift_address }}</p>
                             <button onclick="copyRek(document.getElementById('alamat-kado').innerText)" class="text-[9px] border border-w-green text-w-green px-4 py-2 rounded-full font-bold hover:bg-w-green hover:text-white transition">COPY ALAMAT</button>
                         </div>
                     </div>
@@ -547,12 +553,20 @@
             let isPlaying = false;
             let wasPlayingBeforeHide = false; 
 
+            // Ambil URL parameter untuk nama tamu
             const urlParams = new URLSearchParams(window.location.search);
             let guestName = urlParams.get('to');
             const guestNameEl = document.getElementById('guest-name');
+            const rsvpNameInput = document.getElementById('rsvp-name-input'); // Ambil input nama
 
             if (guestName && guestName.trim() !== '') {
-                guestNameEl.textContent = guestName.replace(/\+/g, ' '); 
+                let formattedName = guestName.replace(/\+/g, ' ');
+                guestNameEl.textContent = formattedName;
+                
+                // Set otomatis ke dalam form RSVP
+                if(rsvpNameInput) {
+                    rsvpNameInput.value = formattedName;
+                }
             } else {
                 guestNameEl.textContent = "Tamu Spesial";
             }
@@ -662,7 +676,8 @@
                 btnShowGift.textContent = giftArea.classList.contains('hidden') ? 'BUKA TANDA KASIH' : 'TUTUP TANDA KASIH';
             });
 
-            const countDownDate = new Date("May 30, 2026 14:00:00").getTime();
+            const eventDateRaw = "{{ \Carbon\Carbon::parse($event->event_date)->format('M d, Y H:i:s') }}";
+            const countDownDate = new Date(eventDateRaw).getTime();
             const timerEl = {
                 days: document.getElementById("days"),
                 hours: document.getElementById("hours"),
@@ -755,10 +770,134 @@
                 if (touchendX < touchstartX - 50) nextImage(); // Swipe Kiri
                 if (touchendX > touchstartX + 50) prevImage(); // Swipe Kanan
             }, {passive: true});
+
+            // LOGIKA AJAX UNTUK RSVP
+            const rsvpForm = document.getElementById('rsvp-form');
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Mencegah reload halaman
+                    
+                    const submitBtn = document.getElementById('btn-submit-rsvp');
+                    const btnText = submitBtn.querySelector('span');
+                    const originalText = btnText.innerText;
+                    
+                    btnText.innerText = 'Mengirim...';
+                    submitBtn.disabled = true;
+
+                    const formData = new FormData(rsvpForm);
+                    
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    fetch(rsvpForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken // Gunakan token dari meta
+                        }
+                    })
+                    .then(response => {
+                        // Cek apakah response dari server sukses (status 200-299)
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // Tampilkan alert success sementara
+                            const alertBox = document.getElementById('rsvp-alert');
+                            alertBox.innerText = data.message;
+                            alertBox.classList.remove('hidden');
+                            setTimeout(() => alertBox.classList.add('hidden'), 5000);
+
+                            // Reset form kecuali nama
+                            rsvpForm.reset();
+                            const urlParams = new URLSearchParams(window.location.search);
+                            let guestName = urlParams.get('to');
+                            if(guestName && guestName.trim() !== '') {
+                                document.getElementById('rsvp-name-input').value = guestName.replace(/\+/g, ' ');
+                            }
+
+                            // Buat elemen ucapan baru
+                            const isHadir = data.data.attendance === 'hadir';
+                            const badgeHadir = isHadir 
+                                ? '<span class="bg-green-100 text-green-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Hadir</span>'
+                                : '<span class="bg-red-100 text-red-700 text-[8px] font-bold px-2 py-0.5 rounded-full">Tidak Hadir</span>';
+                            
+                            const escapeHtml = (text) => (text || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+
+                            const newRsvpHTML = `
+                                <div class="bg-white p-3 rounded-xl shadow-sm text-left border border-w-green/10 rsvp-item fade-in-load">
+                                    <div class="flex justify-between items-center mb-1.5">
+                                        <p class="font-sans font-bold text-[11px] text-w-text-dark">${escapeHtml(data.data.name)}</p>
+                                        ${badgeHadir}
+                                    </div>
+                                    <p class="font-sans text-[10px] text-gray-600 leading-relaxed">${escapeHtml(data.data.message)}</p>
+                                </div>
+                            `;
+
+                            const listContainer = document.getElementById('rsvp-list-container');
+                            const emptyMsg = document.getElementById('empty-rsvp-msg');
+                            if(emptyMsg) emptyMsg.remove(); 
+                            
+                            listContainer.insertAdjacentHTML('afterbegin', newRsvpHTML);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error pengiriman RSVP:', error);
+                        alert('Maaf, sesi Anda mungkin telah habis. Silakan refresh halaman dan coba lagi.');
+                    })
+                    .finally(() => {
+                        btnText.innerText = originalText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
         });
 
-        function copyRek(text) {
-            navigator.clipboard.writeText(text).then(() => alert("Berhasil disalin!"));
+        // Fungsi Copy Clipboard dengan Fallback
+        window.copyRek = function(text) {
+            // Jika browser mendukung clipboard API dan berada dalam konteks aman (HTTPS / Localhost)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert("Berhasil disalin: " + text);
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                // Gunakan fallback jika tidak didukung (contoh: local IP HTTP)
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            // Sembunyikan textarea dari view
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                if(successful) {
+                    alert("Berhasil disalin: " + text);
+                } else {
+                    alert("Gagal menyalin text. Browser tidak mendukung.");
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
         }
     </script>
 </body>

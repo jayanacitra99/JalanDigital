@@ -10,8 +10,14 @@ Route::get('/login', function () {
 
 Route::get('/', [LandingController::class, 'index']);
 
-Route::get('/unduh-mantu-thea-alan', [InvitationController::class, 'index']);
-Route::get('/akad-resepsi-thea-alan', [InvitationController::class, 'index']);
+// Menggunakan parameter dinamis agar satu fungsi bisa menangani banyak link undangan
+Route::get('/{slug}', [InvitationController::class, 'show'])->whereIn('slug', [
+    'unduh-mantu-thea-alan',
+    'akad-resepsi-thea-alan'
+])->name('invitation.show');
+
+// Route untuk memproses form RSVP
+Route::post('/{slug}/rsvp', [InvitationController::class, 'storeRsvp'])->name('invitation.rsvp');
 
 Route::post('/contact', function () {
     return back()->with('success', 'Message sent!');
