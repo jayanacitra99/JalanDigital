@@ -10,7 +10,8 @@ Route::get('/login', function () {
 
 Route::get('/', [LandingController::class, 'index']);
 
-Route::get('/undangan', [InvitationController::class, 'index']);
+Route::get('/unduh-mantu-thea-alan', [InvitationController::class, 'index']);
+Route::get('/akad-resepsi-thea-alan', [InvitationController::class, 'index']);
 
 Route::post('/contact', function () {
     return back()->with('success', 'Message sent!');
