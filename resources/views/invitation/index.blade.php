@@ -14,9 +14,6 @@
 
     <title>Undangan {{ $event->title }} {{ $event->bride_nickname }} & {{ $event->groom_nickname }} - {{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y') }}</title>
     
-    <link rel="preload" as="image" href="{{ asset('img/after-cover.webp') }}">
-    <link rel="preload" as="image" href="{{ asset('img/logo-green.webp') }}">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Caveat:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap&family=Grey+Qo&display=swap" rel="stylesheet">
@@ -232,8 +229,11 @@
 
         <main id="main-content" class="absolute inset-0 w-full h-[100dvh] overflow-x-hidden overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar" style="visibility: hidden; opacity: 0; pointer-events: none;">
             
-            <section class="min-h-[100dvh] w-full snap-start relative bg-cover bg-center flex items-end justify-center pb-12 img-placeholder" style="background-image: url('{{ asset('img/after-cover.webp') }}');">
-                <div class="absolute inset-0 bg-gradient-to-t from-w-green/80 to-transparent pointer-events-none"></div>
+            <section class="min-h-[100dvh] w-full snap-start relative flex items-end justify-center pb-12 overflow-hidden bg-[#EBE7DF]">
+                <img src="{{ asset('img/after-cover.webp') }}" alt="Cover" class="absolute inset-0 w-full h-full object-cover z-0" loading="lazy" decoding="async">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-w-green/80 to-transparent pointer-events-none z-0"></div>
+                
                 <div class="relative z-10 text-white flex flex-col items-center animate-bounce animate-on-scroll is-visible">
                     <span class="font-sans text-[9px] tracking-[0.2em] mb-2 opacity-80">GESER KE ATAS</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -275,7 +275,7 @@
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-200">
                             <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
                                 <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
-                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pics-alan.webp') : asset('img/pics-thea.webp') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-alan.jpg') : asset('img/pic-thea.jpg') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
                                 </div>
                                 
                                 <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
@@ -296,7 +296,7 @@
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-400">
                             <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
                                 <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
-                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pics-thea.webp') : asset('img/pics-alan.webp') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-thea.jpg') : asset('img/pic-alan.jpg') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
                                 </div>
 
                                 <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
@@ -410,25 +410,25 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="flex flex-col gap-4">
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="0">
-                                <img src="{{ asset('img/jawa-01.webp') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-1.jpg') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="2">
-                                <img src="{{ asset('img/jawa-05.webp') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-5.jpg') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="4">
-                                <img src="{{ asset('img/jawa-03.webp') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-3.jpg') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                         </div>
                         
                         <div class="flex flex-col gap-4 mt-10">
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="1">
-                                <img src="{{ asset('img/jawa-02.webp') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-2.jpg') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="3">
-                                <img src="{{ asset('img/jawa-04.webp') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-4.jpg') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                             <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="5">
-                                <img src="{{ asset('img/jawa-06.webp') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                                <img src="{{ asset('img/jawa-6.jpg') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -437,15 +437,15 @@
 
             <section class="min-h-[100dvh] w-full snap-start flex flex-col items-center bg-w-green text-w-text-light relative overflow-hidden">
                 <div class="w-full h-[45vh] relative animate-on-scroll">
-                    <img src="{{ asset('img/luminan-03.webp') }}" class="w-full h-full object-cover gallery-item cursor-pointer" data-index="6" loading="lazy">
+                    <img src="{{ asset('img/luminan-3.jpg') }}" class="w-full h-full object-cover gallery-item cursor-pointer" data-index="6" loading="lazy">
                     <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-w-green to-transparent"></div>
                 </div>
 
                 <div class="max-w-md mx-auto w-full flex flex-col items-center px-6 -mt-12 z-10 animate-on-scroll delay-100">
                     <div class="bg-[#F4F1EA] p-2.5 pb-3 rounded-sm shadow-2xl transform rotate-[-2deg] w-[90%]">
                         <div class="grid grid-cols-2 gap-2">
-                            <img src="{{ asset('img/luminan-05.webp') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="7" loading="lazy">
-                            <img src="{{ asset('img/luminan-01.webp') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="8" loading="lazy">
+                            <img src="{{ asset('img/luminan-5.jpg') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="7" loading="lazy">
+                            <img src="{{ asset('img/luminan-1.jpg') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="8" loading="lazy">
                         </div>
                     </div>
 
@@ -461,15 +461,15 @@
                 <div class="max-w-md mx-auto w-full flex flex-col gap-8 animate-on-scroll">
                     
                     <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[1deg] w-full transition hover:rotate-0 duration-300">
-                        <img src="{{ asset('img/luminan-02.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="9" loading="lazy">
+                        <img src="{{ asset('img/luminan-2.jpg') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="9" loading="lazy">
                     </div>
                     
                     <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[-2deg] w-full transition hover:rotate-0 duration-300">
-                        <img src="{{ asset('img/luminan-04.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="10" loading="lazy">
+                        <img src="{{ asset('img/luminan-4.jpg') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="10" loading="lazy">
                     </div>
 
                     <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[2deg] w-full transition hover:rotate-0 duration-300">
-                        <img src="{{ asset('img/luminan-06.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="11" loading="lazy">
+                        <img src="{{ asset('img/luminan-6.jpg') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="11" loading="lazy">
                     </div>
 
                 </div>
@@ -572,7 +572,7 @@
                         
                         <div class="relative w-56 h-[20rem] md:w-64 md:h-[24rem] mb-6 transform rotate-2">
                             <div class="absolute top-[10%] bottom-[25%] left-[12%] right-[12%] z-0 overflow-hidden">
-                                 <img src="{{ asset('img/pics-end.webp') }}" alt="Thea & Alan" loading="lazy" class="w-full h-full object-cover">
+                                 <img src="{{ asset('img/pic-end.jpg') }}" alt="Thea & Alan" loading="lazy" class="w-full h-full object-cover">
                             </div>
                             
                             <img src="{{ asset('img/border-square.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-2xl">
@@ -612,18 +612,18 @@
 
     <script>
         const galleryImages = [
-            "{{ asset('img/jawa-01.webp') }}",
-            "{{ asset('img/jawa-02.webp') }}",
-            "{{ asset('img/jawa-05.webp') }}",
-            "{{ asset('img/jawa-04.webp') }}",
-            "{{ asset('img/jawa-03.webp') }}",
-            "{{ asset('img/jawa-06.webp') }}",
-            "{{ asset('img/luminan-03.webp') }}",
-            "{{ asset('img/luminan-05.webp') }}",
-            "{{ asset('img/luminan-01.webp') }}",
-            "{{ asset('img/luminan-02.webp') }}",
-            "{{ asset('img/luminan-04.webp') }}",
-            "{{ asset('img/luminan-06.webp') }}",
+            "{{ asset('img/jawa-1.jpg') }}",
+            "{{ asset('img/jawa-2.jpg') }}",
+            "{{ asset('img/jawa-5.jpg') }}",
+            "{{ asset('img/jawa-4.jpg') }}",
+            "{{ asset('img/jawa-3.jpg') }}",
+            "{{ asset('img/jawa-6.jpg') }}",
+            "{{ asset('img/luminan-3.jpg') }}",
+            "{{ asset('img/luminan-5.jpg') }}",
+            "{{ asset('img/luminan-1.jpg') }}",
+            "{{ asset('img/luminan-2.jpg') }}",
+            "{{ asset('img/luminan-4.jpg') }}",
+            "{{ asset('img/luminan-6.jpg') }}",
         ];
 
         // OPTIMASI: Hanya preload file yang penting untuk loading awal
