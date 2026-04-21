@@ -11,7 +11,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Caveat:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Caveat:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap&family=Grey+Qo&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,6 +32,7 @@
                         'serif': ['Playfair Display', 'serif'],
                         'sans': ['Montserrat', 'sans-serif'],
                         'arabic': ['Amiri', 'serif'],
+                        'greyqo': ['Grey Qo', 'sans-serif'],
                     }
                 }
             }
@@ -177,8 +178,11 @@
             </svg>
         </button>
 
-        <section id="cover-page" class="absolute inset-0 z-50 flex flex-col items-center justify-center w-full h-[100dvh] p-6 text-center shadow-lg bg-cover bg-center bg-no-repeat overflow-hidden img-placeholder" style="background-image: url('{{ asset('img/after-cover.webp') }}');">
-            <div class="absolute inset-0 bg-black/50 backdrop-blur-xl pointer-events-none z-0"></div>
+        <section id="cover-page" class="absolute inset-0 z-50 flex flex-col items-center justify-center w-full h-[100dvh] p-6 text-center shadow-lg overflow-hidden bg-w-green">
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-w-gold/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-w-gold/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+            <div class="absolute inset-0 bg-black/10 pointer-events-none z-0"></div>
 
             <svg class="absolute top-1/4 left-[10%] w-10 h-10 text-w-gold opacity-50 z-10 animate-float-1" viewBox="0 0 100 100" fill="currentColor">
                 <path d="M50,50 C35,30 25,5 50,15 C75,5 65,30 50,50 M50,50 C70,35 95,25 85,50 C95,75 70,65 50,50 M50,50 C65,70 75,95 50,85 C25,95 35,70 50,50 M50,50 C30,65 5,75 15,50 C5,25 30,35 50,50"/>
@@ -190,25 +194,29 @@
                 <path d="M50,50 C35,30 25,5 50,15 C75,5 65,30 50,50 M50,50 C70,35 95,25 85,50 C95,75 70,65 50,50 M50,50 C65,70 75,95 50,85 C25,95 35,70 50,50 M50,50 C30,65 5,75 15,50 C5,25 30,35 50,50"/>
             </svg>
 
-            <div class="relative z-20 p-8 h-full w-full max-w-md flex flex-col items-center justify-center mx-auto text-w-text-light">
+            <div class="relative z-20 p-8 h-full w-full max-w-md flex flex-col items-center justify-center mx-auto">
                 <p class="font-serif italic text-xl tracking-wide text-w-gold font-medium mb-10 fade-in-load">{{ $event->title }}</p>
+                
                 <div class="flex flex-col items-center mb-6 mt-2 fade-in-load delay-1 drop-shadow-md transform -rotate-2">
-                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7]">{{ substr($event->bride_nickname, 0, 1) }}</h1>
-                    <span class="text-4xl text-white font-script leading-[0.7] my-3">&</span>
-                    <h1 class="font-script text-8xl md:text-9xl text-w-gold leading-[0.7] ml-4">{{ substr($event->groom_nickname, 0, 1) }}</h1>
+                    <h1 class="font-greyqo text-[9rem] md:text-[11rem] text-w-gold leading-[0.7]">{{ substr($event->bride_nickname, 0, 1) }}</h1>
+                    
+                    <span class="text-4xl text-w-text-light font-script leading-[0.7] my-3">&</span>
+                    
+                    <h1 class="font-greyqo text-[9rem] md:text-[11rem] text-w-gold leading-[0.7]">{{ substr($event->groom_nickname, 0, 1) }}</h1>
                 </div>
-                <p class="font-sans font-semibold text-sm mb-8 tracking-widest fade-in-load delay-2">{{ strtoupper(\Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y')) }}</p>
+                
+                <p class="font-sans font-semibold text-sm mb-8 tracking-widest text-w-text-light fade-in-load delay-2">{{ strtoupper(\Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y')) }}</p>
 
-                <div class="stamp-card transform rotate-2 w-[85%] max-w-[260px] fade-in-load delay-3 mb-10 text-w-text-dark">
-                    <div class="stamp-inner flex flex-col items-center justify-center min-h-[100px] bg-white">
-                        <p class="text-[9px] uppercase tracking-widest opacity-70 mb-2 text-w-green">Kepada Yth.</p>
-                        <h2 id="guest-name" class="font-hand text-2xl font-bold text-w-green border-b border-w-green/20 pb-1">
+                <div class="stamp-card transform rotate-2 w-[85%] max-w-[260px] fade-in-load delay-3 mb-10">
+                    <div class="stamp-inner flex flex-col items-center justify-center min-h-[100px] bg-w-bg shadow-inner">
+                        <p class="text-[9px] uppercase tracking-widest opacity-80 mb-2 text-w-text-dark">Kepada Yth.</p>
+                        <h2 id="guest-name" class="font-hand text-2xl font-bold text-w-green border-b border-w-green/30 pb-1">
                             Tamu Undangan
                         </h2>
                     </div>
                 </div>
 
-                <button id="btn-open" class="bg-w-green text-white font-sans px-8 py-3 rounded-full shadow-xl transition duration-300 ease-in-out transform hover:scale-105 tracking-widest text-[10px] font-bold fade-in-load delay-4 border border-w-bg/50">
+                <button id="btn-open" class="bg-w-gold text-w-green font-sans px-8 py-3 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 tracking-widest text-[10px] font-bold fade-in-load delay-4">
                     BUKA UNDANGAN
                 </button>
             </div>
@@ -245,17 +253,24 @@
 
             <section class="min-h-[100dvh] w-full snap-start flex flex-col items-center justify-center py-12 px-6 text-center relative overflow-hidden bg-clover-light text-w-green">
                 <div class="max-w-md mx-auto w-full relative z-10 flex flex-col items-center">
-                    
-                    <div class="animate-on-scroll mb-8">
-                        <h2 class="font-arabic text-4xl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</h2>
+
+                    <div class="animate-on-scroll mb-8 text-center">
+                        <h2 class="font-arabic text-2xl mb-6">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</h2>
+                        <h2 class="font-arabic text-2xl">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
                     </div>
-                    
-                    <p class="font-sans text-[9px] uppercase tracking-widest mb-10 opacity-70 animate-on-scroll delay-100">Tanpa mengurangi rasa hormat,<br>kami bermaksud mengundang Anda.</p>
+
+                    <p class="font-sans text-[9px] uppercase tracking-widest mb-10 opacity-70 animate-on-scroll delay-200 text-center leading-relaxed">
+                        Maha Suci Allah SWT yang telah menciptakan <br>makhluk-Nya berpasang-pasangan. <br>Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara {{ $event->title }} putra-putri kami.
+                    </p>
                     
                     <div class="flex flex-col items-center w-full px-1 gap-10">
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-200">
-                            <div class="w-36 h-48 mirror-frame mb-5 img-placeholder shadow-lg">
-                                <img src="{{ asset('img/pic-thea.webp') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                            <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
+                                <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
+                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-alan.webp') : asset('img/pic-thea.webp') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                </div>
+                                
+                                <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
                             </div>
 
                             <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,6vw,1.75rem)]">{{ $event->bride_fullname }}</h3>
@@ -268,11 +283,15 @@
                             @endif
                         </div>
 
-                        <div class="font-script text-5xl text-w-gold animate-on-scroll delay-300 opacity-70">&</div>
+                        <div class="font-greyqo text-5xl text-w-gold animate-on-scroll delay-300 opacity-70">&</div>
 
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-400">
-                            <div class="w-36 h-48 mirror-frame mb-5 img-placeholder shadow-lg">
-                                 <img src="{{ asset('img/pic-alan.webp') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                            <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
+                                <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
+                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-thea.webp') : asset('img/pic-alan.webp') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                </div>
+
+                                <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
                             </div>
 
                             <h3 class="font-hand font-bold mb-1 w-full whitespace-nowrap text-[clamp(1.1rem,5.5vw,1.6rem)]">{{ $event->groom_fullname }}</h3>
@@ -335,56 +354,116 @@
                 </div>
             </section>
 
-            <section class="h-auto min-h-[100dvh] w-full snap-start flex flex-col items-center justify-center py-16 px-4 bg-clover-light">
-                <div class="max-w-md mx-auto w-full text-center">
-                    <h2 class="font-hand text-5xl md:text-6xl mb-10 text-w-green animate-on-scroll">Our Gallery</h2>
+            <section class="min-h-[100dvh] w-full snap-start flex flex-col justify-center py-16 text-w-text-light relative overflow-hidden bg-w-green">
+                <div class="max-w-md mx-auto w-full relative z-10 mt-4">
+                    <h2 class="font-hand text-5xl md:text-6xl mb-12 text-center animate-on-scroll">Our Journey</h2>
                     
-                    <div class="grid grid-cols-3 gap-3 mb-10 px-2 animate-on-scroll delay-100">
-                        
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-2deg] img-placeholder gallery-item cursor-pointer" data-index="0">
-                            <img src="{{ asset('img/pic-1.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[1deg] img-placeholder mt-2 gallery-item cursor-pointer" data-index="1">
-                            <img src="{{ asset('img/pic-alan.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-1deg] img-placeholder gallery-item cursor-pointer" data-index="2">
-                            <img src="{{ asset('img/pic-thea.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[2deg] img-placeholder gallery-item cursor-pointer" data-index="3">
-                            <img src="{{ asset('img/pic-1.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-1deg] img-placeholder mt-1 gallery-item cursor-pointer" data-index="4">
-                            <img src="{{ asset('img/pic-alan.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[3deg] img-placeholder gallery-item cursor-pointer" data-index="5">
-                            <img src="{{ asset('img/pic-thea.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-3deg] img-placeholder gallery-item cursor-pointer" data-index="6">
-                            <img src="{{ asset('img/pic-1.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[1deg] img-placeholder mt-2 gallery-item cursor-pointer" data-index="7">
-                            <img src="{{ asset('img/pic-alan.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-2deg] img-placeholder gallery-item cursor-pointer" data-index="8">
-                            <img src="{{ asset('img/pic-thea.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
-                        </div>
+                    <div class="w-full px-8 animate-on-scroll delay-100">
+                        <div class="mx-2">
+                            <div class="relative border-t border-l border-b border-w-text-light rounded-l-[2rem] pt-6 pb-6 pl-6 pr-2">
+                                <span class="absolute -top-[7px] right-0 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                <span class="absolute -top-[7px] left-8 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                
+                                <h3 class="font-sans text-base tracking-widest mb-2 font-semibold">2022</h3>
+                                <p class="font-sans text-[9px] leading-relaxed opacity-90">Bermula dari ketidaksengajaan.<br>Satu tatapan menumbuhkan rasa penasaran. Tanpa<br>rencana, tanpa aba-aba.<br>"Love at First Sight"—begitulah cerita kami dimulai</p>
+                            </div>
+                            
+                            <div class="relative border-r border-b border-w-text-light rounded-r-[2rem] pt-6 pb-6 pr-6 pl-2 -mt-[1px]">
+                                <span class="absolute -top-[7px] right-8 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                
+                                <h3 class="font-sans text-base tracking-widest mb-2 font-semibold text-right">2023</h3>
+                                <p class="font-sans text-[9px] leading-relaxed opacity-90 text-right">Percakapan panjang membawa kami<br>pada rasa yang sama—nyaman dan searah.<br>Memilih melangkah bersama,<br>bukan hanya sekadar singgah.</p>
+                            </div>
 
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-3deg] img-placeholder gallery-item cursor-pointer" data-index="6">
-                            <img src="{{ asset('img/pic-1.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
+                            <div class="relative border-l border-b border-w-text-light rounded-l-[2rem] pt-6 pb-6 pl-6 pr-2 -mt-[1px]">
+                                <span class="absolute -top-[7px] left-8 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                
+                                <h3 class="font-sans text-base tracking-widest mb-2 font-semibold">2024 — 2025</h3>
+                                <p class="font-sans text-[9px] leading-relaxed opacity-90">Banyak cerita, tawa, dan pelajaran hidup di dalamnya.<br>Keyakinan itu semakin tumbuh—bahwa perjalanan kami<br>layak diperjuangkan bersama.</p>
+                            </div>
+
+                            <div class="relative border-r border-b border-w-text-light rounded-r-[2rem] pt-6 pb-6 pr-6 pl-2 -mt-[1px]">
+                                <span class="absolute -top-[7px] right-8 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                <span class="absolute -bottom-[7px] right-8 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                <span class="absolute -bottom-[7px] left-0 text-[12px] leading-none text-w-text-light bg-w-green px-1">♥</span>
+                                
+                                <h3 class="font-sans text-base tracking-widest mb-2 font-semibold text-right">2026</h3>
+                                <p class="font-sans text-[9px] leading-relaxed opacity-90 text-right">Hari ini, di mana perjalanan baru itu dimulai.<br>Dua hati. Dua perjalanan. Kini berakhir dalam satu<br>tujuan #satuhaTheasatuJAlan🍀</p>
+                            </div>
                         </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[1deg] img-placeholder mt-2 gallery-item cursor-pointer" data-index="7">
-                            <img src="{{ asset('img/pic-alan.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
+                    </div>
+                </div>
+            </section>
+
+            <section class="min-h-[100dvh] w-full snap-start flex flex-col justify-center py-16 px-6 bg-w-bg text-w-green relative">
+                <div class="max-w-md mx-auto w-full relative z-10 animate-on-scroll">
+                    <h2 class="font-hand text-5xl md:text-6xl mb-12 text-center text-w-green">Our Gallery</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-4">
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="0">
+                                <img src="{{ asset('img/jawa-1.webp') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="2">
+                                <img src="{{ asset('img/jawa-5.webp') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="4">
+                                <img src="{{ asset('img/jawa-3.webp') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
                         </div>
-                        <div class="bg-white p-1.5 pb-6 shadow-md border border-gray-100 transform rotate-[-2deg] img-placeholder gallery-item cursor-pointer" data-index="8">
-                            <img src="{{ asset('img/pic-thea.webp') }}" width="500" height="500" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 pointer-events-none">
+                        
+                        <div class="flex flex-col gap-4 mt-10">
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="1">
+                                <img src="{{ asset('img/jawa-2.webp') }}" class="w-full h-44 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="3">
+                                <img src="{{ asset('img/jawa-4.webp') }}" class="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="gallery-item cursor-pointer overflow-hidden rounded-sm shadow-sm" data-index="5">
+                                <img src="{{ asset('img/jawa-6.webp') }}" class="w-full h-52 object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="min-h-[100dvh] w-full snap-start flex flex-col items-center bg-w-green text-w-text-light relative overflow-hidden">
+                <div class="w-full h-[45vh] relative animate-on-scroll">
+                    <img src="{{ asset('img/luminan-3.webp') }}" class="w-full h-full object-cover gallery-item cursor-pointer" data-index="6" loading="lazy">
+                    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-w-green to-transparent"></div>
+                </div>
+
+                <div class="max-w-md mx-auto w-full flex flex-col items-center px-6 -mt-12 z-10 animate-on-scroll delay-100">
+                    <div class="bg-[#F4F1EA] p-2.5 pb-3 rounded-sm shadow-2xl transform rotate-[-2deg] w-[90%]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <img src="{{ asset('img/luminan-5.webp') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="7" loading="lazy">
+                            <img src="{{ asset('img/luminan-1.webp') }}" class="w-full aspect-[3/4] object-cover gallery-item cursor-pointer" data-index="8" loading="lazy">
                         </div>
                     </div>
 
-                    <p class="font-hand text-2xl text-w-green px-4 animate-on-scroll delay-300">
-                        "From the beginning until forever, it's always been us."
-                    </p>
+                    <div class="mt-12 px-4 text-center animate-on-scroll delay-200">
+                        <p class="font-hand text-xl md:text-2xl leading-relaxed opacity-90 tracking-wide">
+                            There were countless paths we faced, yet gently led us back. Through every season of our story, it has <b>always been us</b>— again and again. From now to a lifetime, and beyond.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="min-h-[100dvh] w-full snap-start flex flex-col items-center justify-center py-16 p-6 bg-w-green relative">
+                <div class="max-w-md mx-auto w-full flex flex-col gap-8 animate-on-scroll">
+                    
+                    <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[1deg] w-full transition hover:rotate-0 duration-300">
+                        <img src="{{ asset('img/luminan-2.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="9" loading="lazy">
+                    </div>
+                    
+                    <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[-2deg] w-full transition hover:rotate-0 duration-300">
+                        <img src="{{ asset('img/luminan-4.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="10" loading="lazy">
+                    </div>
+
+                    <div class="bg-[#F4F1EA] p-3 pb-8 shadow-xl transform rotate-[2deg] w-full transition hover:rotate-0 duration-300">
+                        <img src="{{ asset('img/luminan-6.webp') }}" class="w-full h-auto gallery-item cursor-pointer" data-index="11" loading="lazy">
+                    </div>
+
                 </div>
             </section>
 
@@ -477,14 +556,21 @@
                 <svg class="absolute top-6 left-6 w-16 h-16 opacity-20 transform -rotate-12 animate-on-scroll delay-300" viewBox="0 0 100 100" fill="currentColor">
                     <path d="M50,50 C35,30 25,5 50,15 C75,5 65,30 50,50 M50,50 C70,35 95,25 85,50 C95,75 70,65 50,50 M50,50 C65,70 75,95 50,85 C25,95 35,70 50,50 M50,50 C30,65 5,75 15,50 C5,25 30,35 50,50"/>
                 </svg>
+                
                 <div class="max-w-xl mx-auto relative z-10 flex flex-col items-center">
                     <p class="font-sans text-[9px] uppercase tracking-widest mb-8 opacity-70 animate-on-scroll">Teruntuk keluarga dan teman</p>
                     
                     <div class="flex flex-col items-center animate-on-scroll delay-100 z-10 relative mb-12">
-                        <div class="w-48 h-64 mirror-frame img-placeholder mb-6 shadow-xl transform rotate-2">
-                             <img src="{{ asset('img/pic-1.webp') }}" alt="Thea & Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                        
+                        <div class="relative w-56 h-[20rem] md:w-64 md:h-[24rem] mb-6 transform rotate-2">
+                            <div class="absolute top-[10%] bottom-[25%] left-[12%] right-[12%] z-0 overflow-hidden">
+                                 <img src="{{ asset('img/pic-end.webp') }}" alt="Thea & Alan" loading="lazy" class="w-full h-full object-cover">
+                            </div>
+                            
+                            <img src="{{ asset('img/border-square.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-2xl">
                         </div>
-                        <div class="bg-[#F4F1EA] text-w-green px-8 py-5 transform -rotate-3 shadow-lg border border-w-green/10">
+
+                        <div class="bg-[#F4F1EA] text-w-green px-8 py-5 transform -rotate-3 shadow-lg border border-w-green/10 -mt-6 relative z-20">
                             <h2 class="font-hand text-5xl md:text-6xl leading-none">Terima Kasih</h2>
                         </div>
                     </div>
@@ -496,7 +582,9 @@
                     </p>
                     
                     <p class="font-sans text-[10px] opacity-70 mb-1 tracking-widest animate-on-scroll delay-300">With love,</p>
-                    <h2 class="font-hand text-5xl text-w-bg animate-on-scroll delay-400">Thea & Alan</h2>
+                    <h2 class="font-hand text-5xl text-w-bg animate-on-scroll delay-400">
+                        {{ $event->slug == 'ngunduh-mantu-alan-thea' ? 'Alan & Thea' : 'Thea & Alan' }}
+                    </h2>
                 </div>
             </section>
 
@@ -508,7 +596,7 @@
             <img id="lightbox-img" src="" class="max-w-[90%] max-h-[80vh] object-contain transition-transform duration-300 select-none">
             <button id="lightbox-next" class="absolute right-4 text-white text-5xl hover:text-gray-300 z-50">›</button>
             <div class="absolute bottom-6 text-white font-sans text-[10px] tracking-widest opacity-70">
-                <span id="lightbox-counter">1</span> / 9
+                <span id="lightbox-counter">1</span> / 12
             </div>
         </div>
 
@@ -516,18 +604,18 @@
 
     <script>
         const galleryImages = [
-            "{{ asset('img/pic-1.webp') }}",
-            "{{ asset('img/pic-alan.webp') }}",
-            "{{ asset('img/pic-thea.webp') }}",
-            "{{ asset('img/pic-1.webp') }}",
-            "{{ asset('img/pic-alan.webp') }}",
-            "{{ asset('img/pic-thea.webp') }}",
-            "{{ asset('img/pic-1.webp') }}",
-            "{{ asset('img/pic-alan.webp') }}",
-            "{{ asset('img/pic-thea.webp') }}",
-            "{{ asset('img/pic-1.webp') }}",
-            "{{ asset('img/pic-alan.webp') }}",
-            "{{ asset('img/pic-thea.webp') }}",
+            "{{ asset('img/jawa-1.webp') }}",
+            "{{ asset('img/jawa-2.webp') }}",
+            "{{ asset('img/jawa-5.webp') }}",
+            "{{ asset('img/jawa-4.webp') }}",
+            "{{ asset('img/jawa-3.webp') }}",
+            "{{ asset('img/jawa-6.webp') }}",
+            "{{ asset('img/luminan-3.webp') }}",
+            "{{ asset('img/luminan-5.webp') }}",
+            "{{ asset('img/luminan-1.webp') }}",
+            "{{ asset('img/luminan-2.webp') }}",
+            "{{ asset('img/luminan-4.webp') }}",
+            "{{ asset('img/luminan-6.webp') }}",
         ];
 
         // OPTIMASI: Hanya preload file yang penting untuk loading awal

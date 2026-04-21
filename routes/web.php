@@ -12,7 +12,7 @@ Route::get('/', [LandingController::class, 'index']);
 
 // Menggunakan parameter dinamis agar satu fungsi bisa menangani banyak link undangan
 Route::get('/{slug}', [InvitationController::class, 'show'])->whereIn('slug', [
-    'unduh-mantu-thea-alan',
+    'ngunduh-mantu-alan-thea',
     'akad-resepsi-thea-alan'
 ])->name('invitation.show');
 
