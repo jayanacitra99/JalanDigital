@@ -202,7 +202,7 @@
             <div class="relative z-20 p-8 h-full w-full max-w-md flex flex-col items-center justify-center mx-auto">
                 <p class="font-serif italic text-xl tracking-wide text-w-gold font-medium mb-10 fade-in-load">{{ $event->title }}</p>
                 
-                <div class="flex flex-col items-center mb-6 mt-2 fade-in-load delay-1 drop-shadow-md transform -rotate-2">
+                <div class="flex flex-col items-center mb-6 mt-2 fade-in-load delay-1 drop-shadow-md transform -rotate-2 w-full">
                     <h1 class="font-greyqo text-[9rem] md:text-[11rem] text-w-gold leading-[0.7]">{{ substr($event->bride_nickname, 0, 1) }}</h1>
                     
                     <span class="text-4xl text-w-text-light font-script leading-[0.7] my-3">&</span>
@@ -274,8 +274,17 @@
                     <div class="flex flex-col items-center w-full px-1 gap-10">
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-200">
                             <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
-                                <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
-                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-alan.jpg') : asset('img/pic-thea.jpg') }}" alt="Thea" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                <div class="absolute top-[12%] bottom-[16%] left-[16%] right-[16%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
+                                    <img 
+                                    src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-alan.jpg') : asset('img/pic-thea.jpg') }}" 
+                                    alt="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? 'Alan' : 'Thea' }}" 
+                                    width="600" 
+                                    height="800" 
+                                    loading="lazy" 
+                                    decoding="async" 
+                                    onload="this.classList.add('loaded')" 
+                                    class="lazy-image w-full h-full object-cover {{ $event->slug == 'ngunduh-mantu-alan-thea' ? 'scale-[1.3] translate-x-0.5 translate-y-7' : 'scale-110 translate-x-1 translate-y-[15px]' }}"
+                                    >
                                 </div>
                                 
                                 <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
@@ -295,8 +304,17 @@
 
                         <div class="flex flex-col items-center w-full animate-on-scroll delay-400">
                             <div class="relative w-[15rem] h-[20rem] md:w-48 md:h-[18rem]">
-                                <div class="absolute top-[16%] bottom-[16%] left-[20%] right-[20%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
-                                    <img src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-thea.jpg') : asset('img/pic-alan.jpg') }}" alt="Alan" width="600" height="800" loading="lazy" decoding="async" onload="this.classList.add('loaded')" class="lazy-image w-full h-full object-cover">
+                                <div class="absolute top-[12%] bottom-[16%] left-[16%] right-[16%] z-0 rounded-[50%] overflow-hidden bg-[#EBE7DF]">
+                                    <img 
+                                    src="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? asset('img/pic-thea.jpg') : asset('img/pic-alan.jpg') }}" 
+                                    alt="{{ $event->slug == 'ngunduh-mantu-alan-thea' ? 'Thea' : 'Alan' }}" 
+                                    width="600" 
+                                    height="800" 
+                                    loading="lazy" 
+                                    decoding="async" 
+                                    onload="this.classList.add('loaded')" 
+                                    class="lazy-image w-full h-full object-cover {{ $event->slug == 'ngunduh-mantu-alan-thea' ? 'scale-110 translate-x-1 translate-y-[15px]' : 'scale-[1.3] translate-x-0.5 translate-y-7' }}"
+                                    >
                                 </div>
 
                                 <img src="{{ asset('img/border-white.png') }}" class="absolute inset-0 w-full h-full object-fill z-10 pointer-events-none drop-shadow-xl">
