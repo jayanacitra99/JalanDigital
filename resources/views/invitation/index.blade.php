@@ -8,7 +8,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Undangan {{ $event->title }}: {{ $event->bride_nickname }} & {{ $event->groom_nickname }}">
-    <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk turut hadir dan memberikan doa restu.">
+    <meta property="og:description" content="Pernikahan {{ $event->bride_nickname }} & {{ $event->groom_nickname }} pada {{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y') }}.">
     <meta property="og:image" content="{{ asset('img/after-cover.webp') }}">
     <meta property="og:site_name" content="Undangan Pernikahan">
 
