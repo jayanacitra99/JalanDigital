@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jalan Digital - Transformation Starts Here</title>
+    <title>{{ $settings['site_name'] ?? 'Jalan Digital' }} - Building your digital path</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -11,7 +11,7 @@
 
 <nav class="navbar">
     <div class="container nav-container">
-        <a href="#" class="logo">Jalan<span class="gradient-text">Digital</span></a>
+        <a href="#" class="logo">Jalan<span class="gradient-text"> Digital</span></a>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#work">Work</a></li>
@@ -28,14 +28,13 @@
 <section class="hero">
     <div class="hero-bg-shapes"></div>
     <div class="container hero-content animate-fade-up">
-        <p class="subtitle highlight-green">Digital Transformation Agency</p>
-        <h1>Jalan Digital<br>
-            <span class="gradient-text-main">Transformasi Digital</span><br>
-            Dimulai Di Sini</h1>
-        <p class="hero-description">We help innovative companies build dynamic, robust, and scalable digital products.</p>
+        <p class="subtitle highlight-green">Architect of Your Digital Journey</p>
+        <h1>{{ $settings['site_name'] ?? 'Jalan Digital' }}<br>
+            <span class="gradient-text-main">{{ $settings['hero_title'] ?? 'Building your digital path' }}</span></h1>
+        <p class="hero-description">{{ $settings['hero_subtitle'] ?? 'We are a dynamic technology company dedicated to guiding businesses into the modern digital landscape.' }}</p>
         <div class="hero-btns">
-            <a href="#contact" class="btn btn-gradient">Mulai Sekarang <i class="fas fa-arrow-right"></i></a>
-            <a href="#work" class="btn btn-outline">View Portfolio</a>
+            <a href="#contact" class="btn btn-gradient">Let's Build Your Path <i class="fas fa-arrow-right"></i></a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
         </div>
     </div>
 </section>
@@ -43,27 +42,26 @@
 <section id="about" class="about-section">
     <div class="container about-container">
         <div class="about-text animate-slide-right">
-            <h2>More Than Just <br><span class="gradient-text-blue">Code & Pixels</span></h2>
-            <p>We don't just build websites; we create digital experiences that elevate your brand and connect with your audience in meaningful ways.</p>
-            <p>Our data-driven strategy and creative design combine to deliver results that matter.</p>
+            <h2>Vision & <br><span class="gradient-text-blue">Mission</span></h2>
+            <p>{{ $settings['hero_description'] ?? 'In an era where a strong online presence is mandatory, we serve as the architect of your digital journey.' }}</p>
 
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3 class="gradient-text-blue">{{ $settings['stat_clients'] ?? '50+' }}</h3>
-                    <p>Happy Clients</p>
+            <div class="vision-mission">
+                <div class="vision-box">
+                    <h4><i class="fas fa-eye gradient-text-blue"></i> Our Vision</h4>
+                    <p>{{ $settings['vision'] ?? 'To be the ultimate catalyst for digital transformation.' }}</p>
                 </div>
-                <div class="stat-item">
-                    <h3 class="gradient-text-pink">{{ $settings['stat_success'] ?? '98%' }}</h3>
-                    <p>Success Rate</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="gradient-text-green">{{ $settings['stat_support'] ?? '24/7' }}</h3>
-                    <p>Support</p>
+                <div class="mission-box">
+                    <h4><i class="fas fa-bullseye gradient-text-pink"></i> Our Mission</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> {{ $settings['mission_1'] ?? 'Empower clients with tailored, high-performance websites.' }}</li>
+                        <li><i class="fas fa-check-circle"></i> {{ $settings['mission_2'] ?? 'Design and launch intuitive, in-house digital products.' }}</li>
+                        <li><i class="fas fa-check-circle"></i> {{ $settings['mission_3'] ?? 'Elevate the digital competitiveness of brands.' }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="about-image animate-slide-left">
-            <img src="https://placehold.co/600x500/13132b/8800ff?text=Retro+Tech+Illustration" alt="Digital Strategy Illustration" class="floating-img">
+            <img src="https://placehold.co/600x500/13132b/8800ff?text=Jalan+Digital+Malang" alt="Digital Strategy Illustration" class="floating-img">
         </div>
     </div>
 </section>
@@ -145,28 +143,35 @@
 <section class="choose-us-section animate-fade-up">
     <div class="container">
         <div class="section-header">
-            <h2>Why Choose <span class="highlight-green">Us?</span></h2>
+            <h2>Why Walk With <span class="highlight-green">Jalan Digital?</span></h2>
         </div>
         <div class="choose-grid animate-fade-up">
             <div class="choose-item">
-                <i class="fas fa-rocket icon-green"></i>
+                <i class="fas fa-chess icon-green"></i>
                 <div>
-                    <h4>Fast Delivery</h4>
-                    <p>We understand the importance of time-to-market and deliver high-quality work swiftly.</p>
+                    <h4>Strategic Alignment</h4>
+                    <p>We do not just write code; we build strategic digital assets designed to scale your marketing efforts and drive measurable value.</p>
                 </div>
             </div>
             <div class="choose-item">
-                <i class="fas fa-palette icon-green"></i>
+                <i class="fas fa-globe-asia icon-green"></i>
                 <div>
-                    <h4>Creative Solutions</h4>
-                    <p>Our team thinks outside the box to provide unique designs that stand out.</p>
+                    <h4>Local Roots, Global Standards</h4>
+                    <p>Proudly based in Indonesia, we combine deep local insights with world-class technical execution.</p>
                 </div>
             </div>
             <div class="choose-item">
-                <i class="fas fa-headset icon-green"></i>
+                <i class="fas fa-lightbulb icon-green"></i>
                 <div>
-                    <h4>24/7 Support</h4>
-                    <p>We are always here to help you with any issues or questions you might have.</p>
+                    <h4>Entrepreneurial Mindset</h4>
+                    <p>Because we build and scale our own products, we treat your web project with the same level of ownership and rigor as our own.</p>
+                </div>
+            </div>
+            <div class="choose-item">
+                <i class="fas fa-layer-group icon-green"></i>
+                <div>
+                    <h4>Future-Ready Architecture</h4>
+                    <p>We utilize modern frameworks to ensure your digital path is built on a solid, scalable, and secure foundation.</p>
                 </div>
             </div>
         </div>
@@ -176,8 +181,8 @@
 <section id="contact" class="contact-section">
     <div class="container animate-fade-up">
         <div class="contact-card">
-            <h2>Let's Build Something <span class="gradient-text-pink">Epic</span></h2>
-            <p>Ready to start your project? Send us a message.</p>
+            <h2>Let's Build Your <span class="gradient-text-pink">Path</span></h2>
+            <p>Ready to take the next step in your digital journey? Connect with us.</p>
 
             @if(session('success'))
                 <div class="alert-success">
@@ -229,8 +234,8 @@
 <footer class="footer">
     <div class="container footer-grid">
         <div class="footer-about">
-            <a href="#" class="logo">Jalan<span class="gradient-text">Digital</span></a>
-            <p>We transform businesses through innovative digital solutions. Based in Malang, Indonesia.</p>
+            <a href="#" class="logo">Jalan<span class="gradient-text"> Digital</span></a>
+            <p>Architect of your digital journey. Based in Malang, East Java, Indonesia.</p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -249,8 +254,8 @@
         </div>
         <div class="footer-contact">
             <h4>Contact</h4>
-            <p><i class="fas fa-envelope"></i> {{ $settings['contact_email'] ?? 'hello@jalandigital.com' }}</p>
-            <p><i class="fas fa-phone"></i> {{ $settings['contact_phone'] ?? '+62 812 3456 7890' }}</p>
+            <p><i class="fas fa-envelope"></i> {{ $settings['contact_email'] ?? 'hello@jalan.digital' }}</p>
+            <p><i class="fas fa-globe"></i> <a href="https://jalan.digital" style="color: var(--text-gray)">jalan.digital</a></p>
             <p><i class="fas fa-map-marker-alt"></i> {{ $settings['address'] ?? 'Malang, East Java' }}</p>
         </div>
     </div>

@@ -224,12 +224,39 @@ section { padding: var(--section-spacing) 0; }
     50% { transform: translateY(-20px); }
 }
 
-.stats-grid {
+.vision-mission {
     display: flex;
+    flex-direction: column;
     gap: 30px;
     margin-top: 40px;
 }
-.stat-item h3 { font-size: 2.5rem; margin-bottom: 5px; }
+.vision-box, .mission-box {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.vision-box h4, .mission-box h4 {
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.mission-box ul {
+    margin-top: 10px;
+}
+.mission-box li {
+    margin-bottom: 10px;
+    color: var(--text-gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.mission-box li i {
+    color: var(--accent-green);
+    margin-top: 5px;
+}
 
 /* --- Services Section --- */
 .grid-container {
